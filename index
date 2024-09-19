@@ -4,72 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emploi du Temps</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS intégré ici */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .calendar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .week {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .day {
+            flex: 1;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            height: 600px;
+        }
+
+        .day-header {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .day-content {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+        }
+    </style>
 </head>
 <body>
     <div class="calendar">
-        <!-- Semaine 1 -->
-        <div class="week">
-            <div class="day">
-                <div class="day-header">Lundi</div>
-                <div class="day-content"></div>
-            </div>
-            <div class="day">
-                <div class="day-header">Mardi</div>
-                <div class="day-content"></div>
-            </div>
-            <div class="day">
-                <div class="day-header">Mercredi</div>
-                <div class="day-content"></div>
-            </div>
-            <div class="day">
-                <div class="day-header">Jeudi</div>
-                <div class="day-content"></div>
-            </div>
-            <div class="day">
-                <div class="day-header">Vendredi</div>
-                <div class="day-content"></div>
-            </div>
-            <div class="day">
-                <div class="day-header">Samedi</div>
-                <div class="day-content"></div>
-            </div>
-            <div class="day">
-                <div class="day-header">Dimanche</div>
-                <div class="day-content"></div>
-            </div>
-        </div>
-        <!-- Semaine 2 -->
-        <div class="week">
-            <div class="day">
-                <div class="day-header">Lundi</div>
-                <div class="day-content"></div>
-            </div>
-            <div class="day">
-                <div class="day-header">Mardi</div>
-                <div class="day-content"></div>
-            </div>
-            <div class="day">
-                <div class="day-header">Mercredi</div>
-                <div class="day-content"></div>
-            </div>
-            <div class="day">
-                <div class="day-header">Jeudi</div>
-                <div class="day-content"></div>
-            </div>
-            <div class="day">
-                <div class="day-header">Vendredi</div>
-                <div class="day-content"></div>
-            </div>
-            <div class="day">
-                <div class="day-header">Samedi</div>
-                <div class="day-content"></div>
-            </div>
-            <div class="day">
-                <div class="day-header">Dimanche</div>
-                <div class="day-content"></div>
-            </div>
-        </div>
+        <!-- Semaine 1 et 2 comme dans l'exemple précédent -->
+    </div>
+</body>
+</html>
+
     </div>
 </body>
 </html>
