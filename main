@@ -1,1 +1,76 @@
-test
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emploi du Temps</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calendar">
+        <!-- Semaine 1 -->
+        <div class="week">
+            <div class="day">
+                <div class="day-header">Lundi</div>
+                <div class="day-content"></div>
+            </div>
+            <div class="day">
+                <div class="day-header">Mardi</div>
+                <div class="day-content"></div>
+            </div>
+            <div class="day">
+                <div class="day-header">Mercredi</div>
+                <div class="day-content"></div>
+            </div>
+            <div class="day">
+                <div class="day-header">Jeudi</div>
+                <div class="day-content"></div>
+            </div>
+            <div class="day">
+                <div class="day-header">Vendredi</div>
+                <div class="day-content"></div>
+            </div>
+            <div class="day">
+                <div class="day-header">Samedi</div>
+                <div class="day-content"></div>
+            </div>
+            <div class="day">
+                <div class="day-header">Dimanche</div>
+                <div class="day-content"></div>
+            </div>
+        </div>
+        <!-- Semaine 2 -->
+        <div class="week">
+            <div class="day">
+                <div class="day-header">Lundi</div>
+                <div class="day-content"></div>
+            </div>
+            <div class="day">
+                <div class="day-header">Mardi</div>
+                <div class="day-content"></div>
+            </div>
+            <div class="day">
+                <div class="day-header">Mercredi</div>
+                <div class="day-content"></div>
+            </div>
+            <div class="day">
+                <div class="day-header">Jeudi</div>
+                <div class="day-content"></div>
+            </div>
+            <div class="day">
+                <div class="day-header">Vendredi</div>
+                <div class="day-content"></div>
+            </div>
+            <div class="day">
+                <div class="day-header">Samedi</div>
+                <div class="day-content"></div>
+            </div>
+            <div class="day">
+                <div class="day-header">Dimanche</div>
+                <div class="day-content"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
