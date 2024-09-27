@@ -27,21 +27,21 @@
             max-width: 1400px;
             margin: 0 auto;
         }
-.day {
-    border: 1px solid #ccc;
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    position: relative;
-    cursor: pointer;
-    height: 100%;
-}
 
-.day[data-day="Samedi"], .day[data-day="Dimanche"] {
-    background-color: #e0e0e0; /* Couleur grisée */
-}
+        .day {
+            border: 1px solid #ccc;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            position: relative;
+            cursor: pointer;
+            height: 100%;
+        }
 
+        .day[data-day="Samedi"], .day[data-day="Dimanche"] {
+            background-color: #e0e0e0; /* Couleur grisée */
+        }
 
         .day-header {
             background-color: #f4a7c1; /* Pastel pink */
@@ -57,9 +57,19 @@
             overflow-y: auto;
         }
 
-        .event {
+        /* Event styles */
+        .event-pink {
             border: 1px solid #f4a7c1;
             background-color: #fddde6;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .event-red {
+            border: 1px solid #f47a7a;
+            background-color: #fddede;
             padding: 10px;
             margin-bottom: 10px;
             border-radius: 4px;
@@ -222,6 +232,11 @@
         <div class="modal-header">Ajouter/Modifier un événement</div>
         <input type="text" id="eventTitle" placeholder="Titre de l'événement" />
         <textarea id="eventText" placeholder="Description de l'événement"></textarea>
+        <label for="eventColor">Couleur :</label>
+        <select id="eventColor">
+            <option value="pink">Rose</option>
+            <option value="red">Rouge pâle</option>
+        </select>
         <button id="saveEventBtn">Enregistrer</button>
         <button id="deleteEventBtn">Supprimer</button>
     </div>
@@ -238,70 +253,42 @@
         // Ajouter ou ouvrir un événement existant en cliquant sur un jour
         document.querySelectorAll('.day').forEach(day => {
             day.addEventListener('click', (e) => {
-                if (e.target.classList.contains('event')) {
+                if (e.target.classList.contains('event-pink') || e.target.classList.contains('event-red')) {
                     // Cliquer sur un événement pour le modifier ou le supprimer
                     selectedEvent = e.target;
                     document.getElementById('eventTitle').value = selectedEvent.querySelector('.event-title').textContent;
                     document.getElementById('eventText').value = selectedEvent.querySelector('.event-text') ? selectedEvent.querySelector('.event-text').textContent : '';
-                    document.getElementById('deleteEventBtn').style.display = 'block'; // Montrer le bouton de suppression
+                    document.getElementById('eventColor').value = selectedEvent.classList.contains('event-red') ? 'red' : 'pink';
+                    document.getElementById('deleteEventBtn').style.display = 'block';
                 } else {
-                    // Cliquer sur une case du calendrier pour ajouter un nouvel événement
+                    // Ajouter un nouvel événement
                     selectedDay = day.querySelector('.day-content');
                     document.getElementById('eventTitle').value = '';
                     document.getElementById('eventText').value = '';
-                    document.getElementById('deleteEventBtn').style.display = 'none'; // Cacher le bouton de suppression pour un nouvel événement
-                    selectedEvent = null;
+                    document.getElementById('eventColor').value = 'pink';
+                    document.getElementById('deleteEventBtn').style.display = 'none';
                 }
                 modal.style.display = 'block';
                 overlay.style.display = 'block';
             });
         });
 
-        // Fermer la modale en cliquant sur l'overlay
-        overlay.addEventListener('click', () => {
-            modal.style.display = 'none';
-            overlay.style.display = 'none';
-        });
-
-        // Enregistrer ou modifier un événement
+        // Enregistrer l'événement
         document.getElementById('saveEventBtn').addEventListener('click', () => {
             const title = document.getElementById('eventTitle').value;
             const text = document.getElementById('eventText').value;
-
-            if (selectedEvent) {
-                // Modifier l'événement existant
-                selectedEvent.querySelector('.event-title').textContent = title;
-                if (text) {
-                    if (!selectedEvent.querySelector('.event-text')) {
-                        const eventTextDiv = document.createElement('div');
-                        eventTextDiv.classList.add('event-text');
-                        selectedEvent.appendChild(eventTextDiv);
-                    }
-                    selectedEvent.querySelector('.event-text').textContent = text;
-                } else if (selectedEvent.querySelector('.event-text')) {
-                    selectedEvent.querySelector('.event-text').remove(); // Supprimer la description si vide
+            const color = document.getElementById('eventColor').value;
+            if (title) {
+                const eventElement = document.createElement('div');
+                eventElement.classList.add(color === 'pink' ? 'event-pink' : 'event-red');
+                eventElement.innerHTML = `<div class="event-title">${title}</div><div class="event-text">${text}</div>`;
+                if (selectedEvent) {
+                    selectedEvent.replaceWith(eventElement);
+                    selectedEvent = null;
+                } else {
+                    selectedDay.appendChild(eventElement);
                 }
-            } else {
-                // Ajouter un nouvel événement
-                const eventDiv = document.createElement('div');
-                eventDiv.classList.add('event');
-
-                const eventTitle = document.createElement('div');
-                eventTitle.classList.add('event-title');
-                eventTitle.textContent = title;
-
-                const eventText = document.createElement('div');
-                eventText.classList.add('event-text');
-                eventText.textContent = text;
-
-                eventDiv.appendChild(eventTitle);
-                if (text) {
-                    eventDiv.appendChild(eventText);
-                }
-
-                selectedDay.appendChild(eventDiv);
             }
-
             modal.style.display = 'none';
             overlay.style.display = 'none';
         });
@@ -309,26 +296,26 @@
         // Supprimer un événement
         document.getElementById('deleteEventBtn').addEventListener('click', () => {
             if (selectedEvent) {
-                selectedEvent.remove(); // Supprimer l'événement du DOM
+                selectedEvent.remove();
                 selectedEvent = null;
-                modal.style.display = 'none';
-                overlay.style.display = 'none';
             }
+            modal.style.display = 'none';
+            overlay.style.display = 'none';
         });
 
-        // Télécharger le calendrier en image
+        // Fermer la modale en cliquant sur l'overlay
+        overlay.addEventListener('click', () => {
+            modal.style.display = 'none';
+            overlay.style.display = 'none';
+            selectedEvent = null; // Réinitialiser l'événement sélectionné
+        });
+
+        // Télécharger le calendrier en tant que fichier PDF
         document.getElementById('downloadBtn').addEventListener('click', () => {
-            html2canvas(document.querySelector(".calendar")).then(canvas => {
-                const link = document.createElement('a');
-                link.href = canvas.toDataURL('image/png');
-                link.download = 'calendrier.png';
-                link.click();
-            });
+            window.print();
         });
     </script>
 
-    <!-- Script html2canvas (version mise à jour) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
 </body>
 </html>
+
