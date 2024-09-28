@@ -229,17 +229,20 @@
 
     <!-- Fenêtre modale -->
     <div class="modal" id="eventModal">
-        <div class="modal-header">Ajouter/Modifier un événement</div>
-        <input type="text" id="eventTitle" placeholder="Titre de l'événement" />
-        <textarea id="eventText" placeholder="Description de l'événement"></textarea>
-        <label for="eventColor">Couleur :</label>
-        <select id="eventColor">
-            <option value="pink">Rose</option>
-            <option value="red">Rouge pâle</option>
-        </select>
-        <button id="saveEventBtn">Enregistrer</button>
-        <button id="deleteEventBtn">Supprimer</button>
-    </div>
+    <div class="modal-header">Ajouter/Modifier un événement</div>
+    <input type="text" id="eventTitle" placeholder="Titre de l'événement" />
+    <textarea id="eventText" placeholder="Description de l'événement"></textarea>
+    <label for="eventColor">Couleur :</label>
+    <select id="eventColor">
+        <option value="pink">Rose</option>
+        <option value="red">Rouge pâle</option>
+        <option value="blue">Bleu pâle</option>
+        <option value="green">Vert pâle</option>
+    </select>
+    <button id="saveEventBtn">Enregistrer</button>
+    <button id="deleteEventBtn">Supprimer</button>
+</div>
+
 
     <!-- Overlay (pour assombrir l'arrière-plan lors de l'affichage de la modale) -->
     <div class="overlay" id="modalOverlay"></div>
