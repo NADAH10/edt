@@ -75,6 +75,24 @@
             border-radius: 4px;
             cursor: pointer;
         }
+            /* Event styles for new colors */
+.event-blue {
+    border: 1px solid #add8e6;
+    background-color: #d0eaff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.event-green {
+    border: 1px solid #98fb98;
+    background-color: #d0f5d0;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
 
         .event-title {
             font-weight: bold;
@@ -277,24 +295,30 @@
         });
 
         // Enregistrer l'événement
-        document.getElementById('saveEventBtn').addEventListener('click', () => {
-            const title = document.getElementById('eventTitle').value;
-            const text = document.getElementById('eventText').value;
-            const color = document.getElementById('eventColor').value;
-            if (title) {
-                const eventElement = document.createElement('div');
-                eventElement.classList.add(color === 'pink' ? 'event-pink' : 'event-red');
-                eventElement.innerHTML = `<div class="event-title">${title}</div><div class="event-text">${text}</div>`;
-                if (selectedEvent) {
-                    selectedEvent.replaceWith(eventElement);
-                    selectedEvent = null;
-                } else {
-                    selectedDay.appendChild(eventElement);
-                }
-            }
-            modal.style.display = 'none';
-            overlay.style.display = 'none';
-        });
+       document.getElementById('saveEventBtn').addEventListener('click', () => {
+    const title = document.getElementById('eventTitle').value;
+    const text = document.getElementById('eventText').value;
+    const color = document.getElementById('eventColor').value;
+    if (title) {
+        const eventElement = document.createElement('div');
+        eventElement.classList.add(
+            color === 'pink' ? 'event-pink' :
+            color === 'red' ? 'event-red' :
+            color === 'blue' ? 'event-blue' :
+            'event-green'
+        );
+        eventElement.innerHTML = `<div class="event-title">${title}</div><div class="event-text">${text}</div>`;
+        if (selectedEvent) {
+            selectedEvent.replaceWith(eventElement);
+            selectedEvent = null;
+        } else {
+            selectedDay.appendChild(eventElement);
+        }
+    }
+    modal.style.display = 'none';
+    overlay.style.display = 'none';
+});
+
 
         // Supprimer un événement
         document.getElementById('deleteEventBtn').addEventListener('click', () => {
